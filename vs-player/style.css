@@ -1,0 +1,282 @@
+@import url(keyframes.css);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    overflow: hidden;
+}
+
+.board {
+    width: 22em;
+    height: 22em;
+    margin: auto;
+    display: grid;
+    grid-template-columns: calc(22em/3) calc(22em/3) calc(22em/3);
+    grid-template-rows: calc(22em/3) calc(22em/3) calc(22em/3);
+    gap: 3px;
+    position: relative;
+}
+
+.board div:not(.panel,.lines,.lines > *) {
+    background-color: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(5px);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Top panel style */
+.board .panel {
+    display: flex;
+    flex-direction: row;
+    width: 22.4em;
+    position: absolute;
+    top: -100%;
+    animation: p .5s 1.8s forwards;
+}
+
+.board .panel > div {
+    height: 0.42em;
+    backdrop-filter: blur(6px);
+    border-radius: 10px;
+}
+
+.board .panel .p1-box {
+    width: 1.5em;
+    background-color: rgba(0, 209, 255, 0.25);
+    border: 2px solid #00D1FF;
+    color: #00D1FF;
+    font-weight: normal;
+    position: relative;
+    transition: .5s;
+}
+
+.board .panel div span {
+    font-size: 20px;
+    position: absolute;
+    left: 38px;
+}
+
+.board .panel div span:nth-child(1) {
+    font-size: 35px;
+    font-weight: bold;
+    left: 5px;
+}
+
+.board .panel .p1-box span:nth-child(1) {
+    font-size: 45px;
+}
+
+.board .panel div svg {
+    width: 25px;
+}
+
+.board .panel .restart {
+    width: 0.42em;
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 2px solid white;
+    margin: 0 9px 0 9px;
+}
+
+.board .panel .restart:active {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid #ffffff00;
+}
+
+.board .panel .restart:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.board .panel .p2-box {
+    width: 1.5em;
+    background-color: rgba(255, 78, 78, 0.25);
+    border: 2px solid #FF4E4E;
+    color: #FF4E4E;
+    font-weight: normal;
+    transition: .5s;
+}
+
+.board > .panel .p1-turn {
+    background-color: rgba(0, 209, 255, 0.5);
+    border: 2px solid #00D1FF00;
+}
+
+.board .panel .p2-turn {
+    background-color: rgba(255, 78, 78, 0.5);
+    border: 2px solid #FF4E4E00;
+}
+
+.placed {
+    animation: .5s fade;
+}
+
+/* Border style for every box */
+.board .box1 {
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+    animation: b1 .3s;
+}
+
+.board .box2 {
+    border: 3px solid white;
+    border-top: 0px;
+    animation: b2 .3s .2s backwards;
+}
+
+.board .box3 {
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    animation: b3 .3s .4s backwards;
+}
+
+.board .box4 {
+    border: 3px solid white;
+    border-left: 0;
+    animation: b4 .3s 1.4s backwards;
+}
+
+.board .box5 {
+    border: 3px solid white;
+    animation: b5 .3s 1.6s backwards;
+}
+
+.board .box6 {
+    border: 3px solid white;
+    border-right: 0;
+    animation: b6 .3s .6s backwards;
+}
+
+.board .box7 {
+    border-top: 3px solid white;
+    border-right: 3px solid white;
+    animation: b7 .3s 1.2s backwards;
+}
+
+.board .box8 {
+    border: 3px solid white;
+    border-bottom: 0;
+    animation: b8 .3s 1s backwards;
+}
+
+.board .box9 {
+    border-top: 3px solid white;
+    border-left: 3px solid white;
+    animation: b9 .3s .8s backwards;
+}
+
+/* Line style */
+.lines {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    left: 1%;
+    top: 1%;
+    display: none;
+}
+
+.line-h {
+    width: 20em;
+    height: 10px;
+    background-color: white;
+    position: absolute;
+    left: 5%;
+    display: none;
+}
+
+.line-v {
+    width: 10px;
+    height: 20em;
+    background-color: white;
+    position: absolute;
+    top: 5%;
+    display: none;
+}
+
+.line-d {
+    width: inherit;
+    height: 10px;
+    background-color: white;
+    position: absolute;
+    display: none;
+}
+
+/* Line Animation */
+.horizontal-1 { animation: h1 1s forwards; }
+.horizontal-2 { animation: h2 1s forwards; }
+.horizontal-3 { animation: h3 1s forwards; }
+.vertical-1 { animation: v1 1s forwards; }
+.vertical-2 { animation: v2 1s forwards; }
+.vertical-3 { animation: v3 1s forwards; }
+.diagonal-1 { animation: d1 1s forwards; }
+.diagonal-2 { animation: d2 1s forwards; }
+
+/* Overlay */
+.overlay {
+    font-family: Arial, Helvetica, sans-serif;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    /* display: flex; */
+    font-size: 30px;
+    transition: .5s;
+    display: none;
+    /* left: 0;
+    right: 0;
+    background-color: black; */
+}
+
+.overlay-show {
+    background-color: rgba(0, 0, 0, .7);
+    backdrop-filter: blur(6px);
+}
+
+.dialog {
+    padding: 2.5em 2em;
+    background-color: rgb(255, 255, 255, .5);
+    color: white;
+    border: 2px solid white;
+    font-weight: bold;
+    margin: auto;
+    transform: scale(0);
+    transition: .5s;
+    position: relative;
+}
+
+.dialog-show {
+    transform: scale(1);
+}
+
+.dialog .action-button {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.dialog .action-button button {
+    font-size: 15px;
+    padding: .3em 1em;
+    border: 2px solid white;
+    border-radius: 18px;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    margin: 0 5px;
+}
+
+.dialog .action-button *:active {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: #00000000;
+}
