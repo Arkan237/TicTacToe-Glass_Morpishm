@@ -53,6 +53,28 @@ function resetBoard() {
 	player = 1;
 }
 
+// Place x or o when the box clicked and check whether anyone wins or not
+function drawSymbol(box) {
+	if (box.innerHTML == '') {
+		box.innerHTML = "<span></span>"
+		box.children[0].innerHTML = player == 1 ? '×' : 'O';
+		p1b.classList.toggle("p1-turn")
+		p2b.classList.toggle("p2-turn")
+		if (player == 1) {
+			box.style.color = "#00D1FF"
+			box.style.textShadow = "5px 8px 4px rgba(0, 209, 255, 0.5)"
+		}
+		else {
+			box.style.color = "#FF4E4E"
+			box.style.fontSize = "70px"
+			box.style.textShadow = "5px 8px 4px rgba(255, 78, 78, 0.5)"
+		}
+		box.children[0].classList.toggle("placed")
+		filled++
+		checkWin()
+	}
+}
+
 // Draw the line if anyone wins
 function drawLine(direction) {
 	lines.style.display = "block"
@@ -109,27 +131,10 @@ function showWinner(message) {
 // Highlight Player 1 box when game started
 p1b.parentElement.addEventListener("animationend",() => setTimeout(() => p1b.classList.toggle("p1-turn"),1000))
 
-// Place x or o when the box clicked and check whether anyone wins or not
+// Check every box to find clicked box
 boxs.forEach(box => {
 	box.addEventListener('click', () => {
-		if (box.innerHTML == '') {
-			box.innerHTML = "<span></span>"
-			box.children[0].innerHTML = player == 1 ? '×' : 'O';
-			p1b.classList.toggle("p1-turn")
-			p2b.classList.toggle("p2-turn")
-			if (player == 1) {
-				box.style.color = "#00D1FF"
-				box.style.textShadow = "5px 8px 4px rgba(0, 209, 255, 0.5)"
-			}
-			else {
-				box.style.color = "#FF4E4E"
-				box.style.fontSize = "70px"
-				box.style.textShadow = "5px 8px 4px rgba(255, 78, 78, 0.5)"
-			}
-			box.children[0].classList.toggle("placed")
-			filled++
-			checkWin()
-		}
+		drawSymbol(box)
 	});
 })
 
