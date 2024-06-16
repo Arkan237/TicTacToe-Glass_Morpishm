@@ -111,10 +111,10 @@ p1b.parentElement.addEventListener("animationend",() => setTimeout(() => p1b.cla
 
 // Place x or o when the box clicked and check whether anyone wins or not
 boxs.forEach(box => {
-	box.addEventListener('click', e => {
-		if (e.target.innerHTML == '') {
-			e.target.innerHTML = "<span></span>"
-			e.target.children[0].innerHTML = player == 1 ? '×' : 'O';
+	box.addEventListener('click', () => {
+		if (box.innerHTML == '') {
+			box.innerHTML = "<span></span>"
+			box.children[0].innerHTML = player == 1 ? '×' : 'O';
 			p1b.classList.toggle("p1-turn")
 			p2b.classList.toggle("p2-turn")
 			if (player == 1) {
@@ -126,13 +126,12 @@ boxs.forEach(box => {
 				box.style.fontSize = "70px"
 				box.style.textShadow = "5px 8px 4px rgba(255, 78, 78, 0.5)"
 			}
-			e.target.children[0].classList.toggle("placed")
+			box.children[0].classList.toggle("placed")
 			filled++
 			checkWin()
 		}
 	});
 })
-
 
 // Reset game when reset button pressed
 document.getElementsByClassName("restart")[0].addEventListener("click", () => resetBoard())
