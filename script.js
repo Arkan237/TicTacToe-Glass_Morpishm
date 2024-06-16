@@ -8,6 +8,7 @@ const p2b = p1b.nextElementSibling.nextElementSibling
 const lines = document.getElementsByClassName("lines")[0]
 const overlay = document.getElementsByClassName("overlay")[0]
 
+// Algorithm to check for the winner
 function checkWin() {
 	if (checkLine(0,1,2)) {
 		drawLine("horizontal-1")
@@ -35,7 +36,7 @@ function checkWin() {
 		lines.children[2].addEventListener("animationend",() => showWinner(`Player ${player} Wins!`))
 	} else if (filled == 9) {
 		showWinner(`Tie!`)
-	} else {
+	} else { // Move turn to another player if the box hasn't filled yet
 		player = player == 1 ? 2 : 1;
 	}
 }
@@ -46,11 +47,13 @@ function checkLine(a, b, c) {
 		   boxs[a].innerHTML != '';
 }
 
+// Function to reset the board
 function resetBoard() {
 	location.reload()
 	player = 1;
 }
 
+// Draw the line if anyone wins
 function drawLine(direction) {
 	lines.style.display = "block"
 	switch (direction) {
@@ -74,6 +77,7 @@ function drawLine(direction) {
 	}
 }
 
+// Function to show the dialogue
 function showWinner(message) {
 	overlay.style.display = "flex"
 	setTimeout(() => {
@@ -102,8 +106,10 @@ function showWinner(message) {
 	}
 }
 
+// Highlight Player 1 box when game started
 p1b.parentElement.addEventListener("animationend",() => setTimeout(() => p1b.classList.toggle("p1-turn"),1000))
 
+// Place x or o when the box clicked and check whether anyone wins or not
 boxs.forEach(box => {
 	box.addEventListener('click', e => {
 		if (e.target.innerHTML == '') {
@@ -127,4 +133,6 @@ boxs.forEach(box => {
 	});
 })
 
+
+// Reset game when reset button pressed
 document.getElementsByClassName("restart")[0].addEventListener("click", () => resetBoard())
