@@ -42,9 +42,9 @@ function checkWin() {
 }
 
 function checkLine(a, b, c) {
-	return boxs[a].innerHTML == boxs[b].innerHTML &&
-		   boxs[b].innerHTML == boxs[c].innerHTML &&
-		   boxs[a].innerHTML != '';
+	return boxs[a].children[0].innerHTML == boxs[b].children[0].innerHTML &&
+		   boxs[b].children[0].innerHTML == boxs[c].children[0].innerHTML &&
+		   boxs[a].children[0].innerHTML != '';
 }
 
 // Function to reset the board
@@ -54,24 +54,32 @@ function resetBoard() {
 }
 
 // Place x or o when the box clicked and check whether anyone wins or not
-function drawSymbol(box) {
-	if (box.innerHTML == '') {
-		box.innerHTML = "<span></span>"
+function drawSymbol(box, isIlussion = false) {
+	if (box.children[0].className === '') {
 		box.children[0].innerHTML = player == 1 ? '×' : 'O';
-		p1b.classList.toggle("p1-turn")
-		p2b.classList.toggle("p2-turn")
 		if (player == 1) {
-			box.style.color = "#00D1FF"
-			box.style.textShadow = "5px 8px 4px rgba(0, 209, 255, 0.5)"
+			box.children[0].style.color = "#00D1FF80"
+			box.children[0].style.fontSize = "100px"
 		}
 		else {
-			box.style.color = "#FF4E4E"
-			box.style.fontSize = "70px"
-			box.style.textShadow = "5px 8px 4px rgba(255, 78, 78, 0.5)"
+			box.children[0].style.color = "#FF4E4E80"
+			box.children[0].style.fontSize = "70px"
 		}
-		box.children[0].classList.toggle("placed")
-		filled++
-		checkWin()
+
+		if (!isIlussion) {
+			if (player == 1) {
+				box.children[0].style.color = "#00D1FF"
+				box.children[0].style.textShadow = "5px 8px 4px rgba(0, 209, 255, 0.5)"
+			} else {
+				box.children[0].style.color = "#FF4E4E"
+				box.children[0].style.textShadow = "5px 8px 4px rgba(255, 78, 78, 0.5)"
+			}
+			p1b.classList.toggle("p1-turn")
+			p2b.classList.toggle("p2-turn")
+			box.children[0].classList.toggle("placed")
+			filled++
+			checkWin()
+		}
 	}
 }
 
@@ -134,9 +142,18 @@ p1b.parentElement.addEventListener("animationend",() => setTimeout(() => {
 	setTimeout(() => {
 		// Check every box to find clicked box
 		boxs.forEach(box => {
-			box.addEventListener('click', () => {
-				drawSymbol(box)
-			});
+			// Show the illusion when mouse pointer hovered the box
+			box.addEventListener("mouseover", () => drawSymbol(box, true))
+			
+			// Hide the illusion when mouse pointer leaved the box
+			box.addEventListener("mouseleave",() => {
+				if (box.children[0].className === '') {
+					box.children[0].innerHTML = ''
+				}
+			})
+
+			// Draw the symbol when the box clicked
+			box.addEventListener('click', () => drawSymbol(box));
 		})
 	},1000)
 },1000))
