@@ -242,6 +242,7 @@ body {
     backdrop-filter: blur(6px);
 }
 
+/* Dialog box style */
 .dialog {
     padding: 2.5em 2em;
     background-color: rgb(255, 255, 255, .5);
@@ -258,6 +259,7 @@ body {
     transform: scale(1);
 }
 
+/* Dialog button style */
 .dialog .action-button {
     position: absolute;
     top: 75%;
@@ -268,7 +270,7 @@ body {
 
 .dialog .action-button button {
     font-size: 15px;
-    padding: .3em 1em;
+    padding: .35em 1em;
     border: 2px solid white;
     border-radius: 18px;
     background-color: rgba(255, 255, 255, 0);
@@ -279,4 +281,8 @@ body {
 .dialog .action-button *:active {
     background-color: rgba(255, 255, 255, 0.5);
     border-color: #00000000;
+}
+
+.dialog .action-button *:hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
