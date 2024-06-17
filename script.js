@@ -129,14 +129,18 @@ function showWinner(message) {
 }
 
 // Highlight Player 1 box when game started
-p1b.parentElement.addEventListener("animationend",() => setTimeout(() => p1b.classList.toggle("p1-turn"),1000))
+p1b.parentElement.addEventListener("animationend",() => setTimeout(() => {
+	p1b.classList.toggle("p1-turn")
+	setTimeout(() => {
+		// Check every box to find clicked box
+		boxs.forEach(box => {
+			box.addEventListener('click', () => {
+				drawSymbol(box)
+			});
+		})
+	},1000)
+},1000))
 
-// Check every box to find clicked box
-boxs.forEach(box => {
-	box.addEventListener('click', () => {
-		drawSymbol(box)
-	});
-})
 
 // Reset game when reset button pressed
 document.getElementsByClassName("restart")[0].addEventListener("click", () => resetBoard())
