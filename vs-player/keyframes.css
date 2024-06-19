@@ -102,7 +102,11 @@
 }
 
 @keyframes p {
-    to {top: -55px;}
+    0% {opacity: 0;}
+    100% {
+        opacity: 1;
+        top: -55px;
+    }
 }
 
 @keyframes fade {

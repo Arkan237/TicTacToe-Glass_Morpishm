@@ -50,7 +50,6 @@ function checkLine(a, b, c) {
 // Function to reset the board
 function resetBoard() {
 	location.reload()
-	player = 1;
 }
 
 // Place x or o when the box clicked and check whether anyone wins or not
@@ -160,4 +159,16 @@ p1b.parentElement.addEventListener("animationend",() => setTimeout(() => {
 
 
 // Reset game when reset button pressed
-document.getElementsByClassName("restart")[0].addEventListener("click", () => resetBoard())
+document.getElementsByClassName("restart")[0].addEventListener("click", resetBoard)
+
+/*
+// Reset without refresh
+// Maybe... I will need this code later... Idk... I will just place it here
+boxs.forEach(b => {
+    b.innerHTML = "<span></span>"
+    filled = 0
+    player = 1
+    p1b.classList.add("p1-turn")
+    p2b.classList.remove("p2-turn")
+})
+*/
