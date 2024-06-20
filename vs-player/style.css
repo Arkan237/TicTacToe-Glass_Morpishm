@@ -66,6 +66,7 @@ body {
     font-size: 20px;
     position: absolute;
     left: 38px;
+    cursor: default;
 }
 
 .board .panel div span:nth-child(1) {
@@ -96,6 +97,7 @@ body {
 
 .board .panel .restart:hover {
     background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
 }
 
 .board .panel .p2-box {
@@ -253,6 +255,7 @@ body {
     transform: scale(0);
     transition: .5s;
     position: relative;
+    cursor: default;
 }
 
 .dialog-show {
@@ -285,4 +288,5 @@ body {
 
 .dialog .action-button *:hover {
     background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
 }

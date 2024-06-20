@@ -22,6 +22,7 @@ body {
     backdrop-filter: blur(6px);
     border-radius: 16px;
     animation: slide-up 2s ease 0s 1 normal forwards;
+    cursor: default;
 
     /* Uncooment this if you prefer the old animation (don't forget to comment the new one also */
     /* animation: slide-up-old 1s cubic-bezier(0, 1.03, 0.57, 1.34); */
@@ -56,14 +57,20 @@ h1 {
     margin: auto;
     position: relative;
     animation: slide-left 2s 0s forwards cubic-bezier(0.64, 0, 0.78, 0);
+    cursor: pointer;
     
-    /* Uncooment this if you prefer the old animation (don't forget to comment the new one also */
+    /* Uncoment this if you prefer the old animation (don't forget to comment the new one also */
     /* animation: slide-left-old 1s 1.5s both cubic-bezier(0, 1.03, 0.57, 1.34); */
 }
 
 /* Comment this also to use old animation */
 .container .player {
     animation: slide-right 2s 0s forwards cubic-bezier(0.64, 0, 0.78, 0);
+}
+
+/* Reminder: Delete this line when computer opponent has been implemented */
+.container .computer {
+    cursor: not-allowed;
 }
 
 .container .computer svg {

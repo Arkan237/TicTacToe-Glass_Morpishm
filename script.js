@@ -141,8 +141,14 @@ p1b.parentElement.addEventListener("animationend",() => setTimeout(() => {
 	setTimeout(() => {
 		// Check every box to find clicked box
 		boxs.forEach(box => {
-			// Show the illusion when mouse pointer hovered the box
-			box.addEventListener("mouseover", () => drawSymbol(box, true))
+			// Show the illusion when mouse cursor hovered the box
+			box.addEventListener("mouseover", () => {
+				// Change mouse cursor when hovering the box
+				(box.children[0].className === "")
+				? box.style.cursor = "crosshair" 
+				: box.style.cursor = "not-allowed"
+				drawSymbol(box, true)
+			})
 			
 			// Hide the illusion when mouse pointer leaved the box
 			box.addEventListener("mouseleave",() => {
