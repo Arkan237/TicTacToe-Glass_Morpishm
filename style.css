@@ -1,7 +1,12 @@
 * {
+    /* CSS Reset */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    /* Disable text selection for all elements */
+    user-select: none;
+    -webkit-user-select: none; /* For Safari support */
 }
 
 body {
