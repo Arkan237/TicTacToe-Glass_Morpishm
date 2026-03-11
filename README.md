@@ -6,6 +6,10 @@ This is just a simple tic tac toe game with glassmorpishm design.
 First, it is just for fun. Second, I got bored with the casual tic tac toe game design. It looks like a scribble on paper. So, I want to make something different with it. Third, I also like glassmorphism design lately. It looks beautiful, isn't it? And also, many of desktop operating system has adopted this design (like Windows, Mac OS, and Linux (not really, but it looks good when using it. Especially with KDE Plasma :D))
 
 ## How do I run it?
+### 1. Online play
+Visit [this site](https://arkan237.github.io/TicTacToe-Glass_Morpishm/) to play the game online without any download. Note that **online multiplayer isn't supported.**
+
+### 2. Local run
 <details>
 <summary>Desktop/Laptop (Windows, Mac OS, Linux)</summary>
 
@@ -26,9 +30,11 @@ See [LICENSE.md](LICENSE.md)
 Feel free to do pull requests. But you can also just open an issue if you found any bug in this program or you just want to give a feedback.
 
 ## Future Updates
-- Adding computer opponent
-- Illusion when hovering the box
-- Dark mode
+- [X] Illusion when hovering the box
+- [ ] Add computer opponent
+- [ ] Dark mode
+- [ ] Customization options (background change, color scheme)
+- [ ] Add new gameplay mode
 
 ## Preview
 ![Home Screen](preview/img1.jpg)
